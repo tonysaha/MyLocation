@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlaceFragment"
+    android:orientation="vertical"
+    android:background=" #E8FFFE"
+
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center"
+
+        android:text="Your Place Details"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:background="#A0F0ED"
+        android:textColor="#FFFFFF"
+        />
+
+<!--Address-->
+<RelativeLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:padding="2dp"
+    android:background="#FFFF"
+    android:layout_gravity="center"
+    >
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="104dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:textSize="15dp"
+        android:text="Address"
+        android:paddingLeft="10dp"
+        android:textColor="#12283A"
+        android:foregroundGravity="center"/>
+    <TextView
+
+        android:id="@+id/addressTV"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=": Nothing"
+        android:textSize="15dp"
+
+        android:layout_toRightOf="@+id/textView2"
+        android:paddingLeft="30dp"
+        android:textColor="#0F2F21"
+
+       />
+</RelativeLayout>
+
+
+    <!--City-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:padding="2dp"
+        >
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="104dp"
+            android:layout_height="wrap_content"
+
+            android:textSize="15dp"
+            android:text="City"
+            android:paddingLeft="10dp"
+            android:textColor="#12283A"/>
+        <TextView
+
+            android:id="@+id/cityTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=": Nothing"
+            android:textSize="15dp"
+
+            android:layout_toRightOf="@+id/textView3"
+            android:paddingLeft="30dp"
+            android:textColor="#0F2F21"/>
+    </RelativeLayout>
+
+
+    <!--Sub city-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:padding="2dp"
+        android:background="#FFFF"
+        android:layout_gravity="center"
+        >
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="104dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:textSize="15dp"
+            android:text="Sub City"
+            android:paddingLeft="10dp"
+            android:textColor="#12283A"
+            android:foregroundGravity="center"/>
+        <TextView
+
+            android:id="@+id/subcityTv"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=": Nothing"
+            android:textSize="15dp"
+
+            android:layout_toRightOf="@+id/textView4"
+            android:paddingLeft="30dp"
+            android:textColor="#0F2F21"
+
+            />
+    </RelativeLayout>
+
+    <!--Postal code-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:padding="2dp"
+        >
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="104dp"
+            android:layout_height="wrap_content"
+
+            android:textSize="15dp"
+            android:text="Postal Code"
+            android:paddingLeft="10dp"
+            android:textColor="#12283A"/>
+        <TextView
+
+            android:id="@+id/postcodeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=": Nothing"
+            android:textSize="15dp"
+
+            android:layout_toRightOf="@+id/textView5"
+            android:paddingLeft="30dp"
+            android:textColor="#0F2F21"/>
+    </RelativeLayout>
+
+    <!--Division-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:padding="2dp"
+        android:background="#FFFF"
+        android:layout_gravity="center"
+        >
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="104dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:textSize="15dp"
+            android:text="Division"
+            android:paddingLeft="10dp"
+            android:textColor="#12283A"
+            android:foregroundGravity="center"/>
+        <TextView
+
+            android:id="@+id/divisionTv"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=": Nothing"
+            android:textSize="15dp"
+
+            android:layout_toRightOf="@+id/textView6"
+            android:paddingLeft="30dp"
+            android:textColor="#0F2F21"
+
+            />
+    </RelativeLayout>
+    <!--Country-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+
+        android:padding="2dp">
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="104dp"
+            android:layout_height="wrap_content"
+
+            android:textSize="15dp"
+            android:text="Country"
+            android:paddingLeft="10dp"
+            android:textColor="#12283A"/>
+        <TextView
+
+            android:id="@+id/countryTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=": Nothing"
+            android:textSize="15dp"
+
+            android:layout_toRightOf="@+id/textView8"
+            android:paddingLeft="30dp"
+            android:textColor="#0F2F21"/>
+    </RelativeLayout>
+    <!--Country code-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:padding="2dp"
+        android:background="#FFFF"
+        android:layout_gravity="center"
+        >
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="104dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:textSize="15dp"
+            android:text="Country Code"
+            android:paddingLeft="10dp"
+            android:textColor="#12283A"
+            android:foregroundGravity="center"/>
+        <TextView
+
+            android:id="@+id/countycodeTv"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=": Nothing"
+            android:textSize="15dp"
+
+            android:layout_toRightOf="@+id/textView7"
+            android:paddingLeft="30dp"
+            android:textColor="#0F2F21"
+
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        </com.google.android.gms.ads.AdView>
+
+    </RelativeLayout>
+</LinearLayout>

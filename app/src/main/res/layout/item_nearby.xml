@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+    >
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        card_view:cardCornerRadius="15dp"
+        card_view:cardMaxElevation="5dp"
+        card_view:cardElevation="5dp"
+
+        card_view:cardUseCompatPadding="true"
+        card_view:cardPreventCornerOverlap="false"
+
+        >
+<LinearLayout
+    android:id="@+id/recView"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin"
+
+
+
+
+    >
+
+        <TextView
+            android:id="@+id/headTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Heading"
+            android:textSize="20dp"
+
+
+            />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left">
+    <RatingBar
+        android:id="@+id/MyRating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:stepSize="0.1"
+        />
+
+        <TextView
+            android:layout_toEndOf="@+id/MyRating"
+            android:id="@+id/distanceTv"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_height="wrap_content"
+            android:text="Distance "/>
+
+    </RelativeLayout>
+        <TextView
+            android:id="@+id/detailTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detail"/>
+
+
+</LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

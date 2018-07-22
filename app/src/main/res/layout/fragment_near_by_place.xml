@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NearByPlaceFragment"
+    android:orientation="vertical"
+    >
+
+
+
+    <LinearLayout
+
+
+        android:id="@+id/type"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+
+        android:background="#4DC0B5">
+
+
+<!--        <Spinner
+            android:id="@+id/typeSp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:drawSelectorOnTop="true"
+            android:background="#FFFF"
+           android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+          android:entries="@array/spinnerItems">
+
+        </Spinner>-->
+
+
+
+<EditText
+    android:id="@+id/rediusET"
+    android:layout_width="100sp"
+    android:layout_height="42dp"
+    android:background="#FFFF"
+    android:layout_gravity="center_vertical"
+    android:layout_marginLeft="15sp"
+    android:text="1"
+    android:hint="km"
+    android:autofillHints="km"
+    android:textAlignment="center"
+
+    />
+
+
+
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="15sp"
+            />
+
+
+
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="60dp">
+
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="55dp"
+
+        >
+       <!-- <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10sp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+                <com.google.android.gms.ads.AdView
+                    android:layout_alignParentBottom="true"
+                    xmlns:ads="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/adView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ads:adSize="SMART_BANNER"
+                    ads:adUnitId="ca-app-pub-3940256099942544/2247696110"
+                    />/>
+            </LinearLayout>
+
+
+        </RelativeLayout>-->
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    android:layout_centerHorizontal="true"
+    >
+
+    <TextView
+        android:id="@+id/instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Please select your range and service type\n[Note:Range is counted with kilometre]" />
+
+
+</LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFF"
+
+            >
+
+
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+
+
+
+
+
+</FrameLayout>

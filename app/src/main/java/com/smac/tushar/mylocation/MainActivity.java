@@ -5,6 +5,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 
 
+import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Geocoder;
 import android.location.Location;
@@ -63,6 +65,15 @@ import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
 import com.karan.churi.PermissionManager.PermissionManager;
+import com.nightonke.boommenu.BoomButtons.BoomButton;
+import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
+import com.nightonke.boommenu.BoomButtons.SimpleCircleButton;
+import com.nightonke.boommenu.BoomButtons.TextInsideCircleButton;
+import com.nightonke.boommenu.BoomButtons.TextOutsideCircleButton;
+import com.nightonke.boommenu.BoomMenuButton;
+import com.nightonke.boommenu.ButtonEnum;
+import com.nightonke.boommenu.OnBoomListener;
+import com.nightonke.boommenu.Piece.PiecePlaceEnum;
 
 import java.io.IOException;
 import java.util.List;
@@ -116,7 +127,138 @@ public class MainActivity extends AppCompatActivity
 
         nearByPlaceFragment= new NearByPlaceFragment();
         mapFragment=new MapFragment();
+        final BoomMenuButton bmb = (BoomMenuButton) findViewById(R.id.bmb);
 
+
+
+        for (int i = 0; i < bmb.getPiecePlaceEnum().pieceNumber(); i++) {
+
+            if (i==0){
+                TextOutsideCircleButton.Builder builder = new TextOutsideCircleButton.Builder()
+                    .normalImageRes(R.drawable.near_menu2)
+                    .imagePadding(new Rect(0,0,0,0))
+                    .normalText("Near By Place");
+            bmb.addBuilder(builder);}
+            if (i==1){
+                TextOutsideCircleButton.Builder builder = new TextOutsideCircleButton.Builder()
+                        .normalImageRes(R.drawable.place_menu2)
+                        .imagePadding(new Rect(0,0,0,0))
+                        .normalText("My Location Details");
+                bmb.addBuilder(builder);}
+            if (i==2){
+                TextOutsideCircleButton.Builder builder = new TextOutsideCircleButton.Builder()
+                        .normalImageRes(R.drawable.share_menu2)
+                       .imagePadding(new Rect(0,0,0,0))
+                        .normalText("Share My Location");
+                bmb.addBuilder(builder);}
+        }
+
+        bmb.setOnBoomListener(new OnBoomListener() {
+            @Override
+            public void onClicked(int index, BoomButton boomButton) {
+
+
+                if(index==1){
+                    if (mInterstitialAd.isLoaded()) {
+                        mInterstitialAd.show();
+                    }
+                    linearLayout.setVisibility(View.GONE);
+
+
+                    FragmentManager fragmentManager=getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.screen_area,new PlaceFragment()).commit();
+                }
+                else if(index==0){
+                    if (mInterstitialAd.isLoaded()) {
+                        mInterstitialAd.show();
+                    } else {
+
+                    }
+                    SharedPreferences preferences =  getSharedPreferences("NearbyData", MODE_PRIVATE);
+                    SharedPreferences.Editor prefsEditor = preferences.edit();
+
+                    String nearbyLat =String.valueOf(myLat);
+                    String nearbyLon=String.valueOf(myLon);
+
+                    prefsEditor.putString("lat",nearbyLat);
+                    prefsEditor.putString("lon",nearbyLon).commit();
+
+
+
+                    //Floating Button....................color change.........
+                    fabbButton.setBackgroundTintList(ColorStateList.valueOf(Color
+                            .parseColor("#3498db")));
+
+
+
+                    linearLayout.setVisibility(View.VISIBLE);
+                    // toolbar.setBackgroundColor(Color.parseColor("#3F51B5"));
+
+
+                    // autocompleteFragment.setText("");
+
+                    MyAdapter myAdapter=new MyAdapter();
+                    myAdapter.setHasStableIds(false);
+                    myAdapter.notifyDataSetChanged();
+
+
+                    FragmentManager fragmentManager=getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.screen_area,nearByPlaceFragment).commit();
+                    Toast.makeText(MainActivity.this,"Set Your Current Location",Toast.LENGTH_LONG).show();
+                }
+
+                else {
+                    if (mInterstitialAd.isLoaded()) {
+                        mInterstitialAd.show();
+                    } else {
+
+                    }
+
+                    Intent intent=new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    //LatLng point=new LatLng(myLat,myLon);
+                    String uri = "http://maps.google.com/maps/search/?api=1&query=" + myLat + ","
+                            +myLon;
+
+                    Uri point=Uri.parse(uri);
+                    Log.d("sendl",point.toString());
+
+
+                    String sharebody=("SMAC TECHNOLOGY"+"\n"+point+"\nThanks for using \n http://smactechnology.net ");
+
+                    String shareSub=getString(R.string.app_name);
+
+                    intent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
+                    intent.putExtra(Intent.EXTRA_TEXT,sharebody);
+                    startActivity(Intent.createChooser(intent,"Share Using"));
+                }
+            }
+
+            @Override
+            public void onBackgroundClick() {
+
+            }
+
+            @Override
+            public void onBoomWillHide() {
+
+            }
+
+            @Override
+            public void onBoomDidHide() {
+
+            }
+
+            @Override
+            public void onBoomWillShow() {
+
+            }
+
+            @Override
+            public void onBoomDidShow() {
+
+            }
+        });
      /*   FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,14 +268,14 @@ public class MainActivity extends AppCompatActivity
             }
         });*/
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+       /* DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        toggle.syncState();*/
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        /*NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);*/
 
         buildGoogleApiClient();
 
@@ -211,10 +353,20 @@ public class MainActivity extends AppCompatActivity
                 autocompleteFragment.setText(addPreferences.getString("currentlocation",""));
                 SharedPreferences preferencesearch =getSharedPreferences("SearchType",MODE_PRIVATE);
                 String searchtype=preferencesearch.getString("searctype","");
-                nearByPlaceFragment.loadRecycleView(searchtype);
+                try {
+
+
+                    nearByPlaceFragment.loadRecycleView(searchtype);
+                }catch (Exception e){
+
+                }
 
             }
         });
+
+        // ..........Location Addresss...............................
+
+
 
    //....Google sugettion box.......................
 
@@ -223,6 +375,9 @@ public class MainActivity extends AppCompatActivity
         autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
         autocompleteFragment.setHint("Search New Location");
+        SharedPreferences addPreferences=getSharedPreferences("CurrentAddress",MODE_PRIVATE);
+        String address=addPreferences.getString("currentlocation","");
+        autocompleteFragment.setText(address);
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
@@ -237,8 +392,8 @@ public class MainActivity extends AppCompatActivity
                     SharedPreferences preferencesearch =getSharedPreferences("SearchType",MODE_PRIVATE);
                     String searchtype=preferencesearch.getString("searctype","");
 
-                    SharedPreferences preferences =  getSharedPreferences("AppPrefs", MODE_PRIVATE);
-                    String type=preferences.getString("ItemId", "");
+                    /*SharedPreferences preferences =  getSharedPreferences("AppPrefs", MODE_PRIVATE);
+                    String type=preferences.getString("ItemId", "");*/
 
                     Toast.makeText(MainActivity.this,"Your Location set "+place.getAddress(),Toast.LENGTH_LONG).show();
                   /*  NearByPlaceFragment nearByPlaceFragment=new NearByPlaceFragment();
@@ -360,7 +515,7 @@ public class MainActivity extends AppCompatActivity
 
 
                     toolbar.setBackgroundColor(Color.parseColor("#4DC0B5"));
-                    fragment = new PlaceFragment();
+                    fragment = new NearByPlaceFragment();
                     if (fragment != null) {
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction ft = fragmentManager.beginTransaction();
@@ -538,9 +693,7 @@ public class MainActivity extends AppCompatActivity
             linearLayout.setVisibility(View.VISIBLE);
            // toolbar.setBackgroundColor(Color.parseColor("#3F51B5"));
 
-          SharedPreferences addPreferences=getSharedPreferences("CurrentAddress",MODE_PRIVATE);
-          String address=addPreferences.getString("currentlocation","");
-          autocompleteFragment.setText(addPreferences.getString("currentlocation",""));
+
          // autocompleteFragment.setText("");
 
           MyAdapter myAdapter=new MyAdapter();
@@ -561,26 +714,7 @@ public class MainActivity extends AppCompatActivity
           } else {
 
           }
-            //linearLayout.setVisibility(View.GONE);
-           // toolbar.setBackgroundColor(Color.parseColor("#3F51B5"));
-          /*toolbar.setBackgroundColor(Color.parseColor("#4DC0B5"));
-          fragment=new PlaceFragment();*/
 
-     /*     Toolbar tb=findViewById(R.id.toolbar);
-          setSupportActionBar(tb);
-          ActionBar actionBar=getSupportActionBar();
-          actionBar.setDisplayHomeAsUpEnabled(true);
-          actionBar.setTitle("Settings");
-
-          try {
-              startActivity(new Intent(Intent.ACTION_VIEW,
-                      Uri.parse("market://details?id=faisal.com.bdcashquiz")));
-          }catch (ActivityNotFoundException e){
-
-              startActivity(new Intent(Intent.ACTION_VIEW,
-                      Uri.parse("https://play.google.com/store/apps/details?id=faisal.com.bdcashquiz")));
-          }
-          toolbar.setBackgroundColor(Color.parseColor("#4DC0B5"));*/
           Intent intent=new Intent(Intent.ACTION_SEND);
           intent.setType("text/plain");
           //LatLng point=new LatLng(myLat,myLon);
@@ -689,12 +823,34 @@ public class MainActivity extends AppCompatActivity
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+    private Geocoder tGeocoder;
 
     @Override
     public void onLocationChanged(Location location) {
 
         myLat=location.getLatitude();
         myLon=  location.getLongitude();
+
+        LocationReq locationReq = new LocationReq();
+        locationReq.setLat(Double.valueOf(getMyLon()));
+        locationReq.setLon(Double.valueOf(getMyLon()));
+        //Toast.makeText(MainActivity.this, String.valueOf(locationReq.getLat()) + " " + String.valueOf(locationReq.getLon()), Toast.LENGTH_SHORT).show();
+
+        tGeocoder = new Geocoder(MainActivity.this);
+        try {
+
+
+            locationReq.address(tGeocoder);
+
+        }catch (Exception e){
+
+        }
+
+        SharedPreferences addPreferences=getSharedPreferences("CurrentAddress", Context.MODE_PRIVATE);
+        SharedPreferences.Editor addpreEditor=addPreferences.edit();
+        addpreEditor.putString("currentlocation",locationReq.getAdress()).commit();
+
+
 
        /* LocationReq locationRequest=new LocationReq();
         locationRequest.setLat(Double.valueOf(myLat));
@@ -716,8 +872,7 @@ public class MainActivity extends AppCompatActivity
 
         mInterstitialAd = new InterstitialAd(MainActivity.this);
 
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712" +
-                "");
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
 
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 

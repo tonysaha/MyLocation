@@ -23,9 +23,26 @@
         android:src="@drawable/ic_my_location"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="58dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="10dp"/>
+        android:layout_marginRight="8dp"/>
+
+
+    <com.nightonke.boommenu.BoomMenuButton
+        android:id="@+id/bmb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="75dp"
+
+        app:bmb_buttonEnum="textOutsideCircle"
+        app:bmb_piecePlaceEnum="piecePlace_dot_3_1"
+        app:bmb_buttonPlaceEnum="buttonPlace_sc_3_1"
+       app:bmb_normalColor="#16A085"
+        />
+
+        />
 
 
 </RelativeLayout>

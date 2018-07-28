@@ -6,8 +6,8 @@ android {
         applicationId "com.smac.tushar.mylocation"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -54,6 +54,8 @@ dependencies {
     //Easy Permission.................
     implementation 'pub.devrel:easypermissions:0.4.0'
     implementation 'com.github.karanchuri:PermissionManager:0.1.0'
+
+    implementation 'com.nightonke:boommenu:2.1.1'
 
 
 

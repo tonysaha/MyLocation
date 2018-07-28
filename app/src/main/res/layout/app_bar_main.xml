@@ -15,14 +15,14 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#64D5CA"
+            android:background="#16A085"
             app:popupTheme="@style/AppTheme.PopupOverlay" >
 
             <LinearLayout
                 android:id="@+id/place_sugetion"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone"
+
                 android:layout_marginTop="5sp"
 
                 >
@@ -30,6 +30,7 @@
                  <fragment
                      android:id="@+id/place_autocomplete_fragment"
                      android:layout_width="match_parent"
+
 
 
                      android:layout_height="20dp"

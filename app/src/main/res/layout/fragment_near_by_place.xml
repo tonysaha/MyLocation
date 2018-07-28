@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".NearByPlaceFragment"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
 
 
@@ -17,7 +17,7 @@
         android:layout_height="50dp"
         android:orientation="horizontal"
 
-        android:background="#4DC0B5">
+        android:background="#1ABC9C">
 
 
 <!--        <Spinner
@@ -36,9 +36,10 @@
 
 <EditText
     android:id="@+id/rediusET"
-    android:layout_width="100sp"
+    android:layout_width="50sp"
     android:layout_height="42dp"
-    android:background="#FFFF"
+    android:background="#16A085"
+    android:textColor="#FFFF"
     android:layout_gravity="center_vertical"
     android:layout_marginLeft="15sp"
     android:text="1"
@@ -47,6 +48,23 @@
     android:textAlignment="center"
 
     />
+        <EditText
+            android:id="@+id/Km"
+            android:layout_width="50sp"
+            android:layout_height="42dp"
+            android:background="#16A085"
+            android:textColor="#FFFF"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2sp"
+            android:text="Km"
+            android:hint="km"
+            android:autofillHints="km"
+            android:textAlignment="center"
+            android:editable="false"
+            android:focusable="false"
+            android:clickable="false"
+
+            />
 
 
 
@@ -56,9 +74,13 @@
             android:layout_width="match_parent"
             android:layout_height="42dp"
 
+
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5sp"
             android:layout_marginRight="15sp"
+            app:ms_background_color="#16A085"
+            android:textColor="#FFFF"
+            app:ms_text_color="#FFFF"
             />
 
 

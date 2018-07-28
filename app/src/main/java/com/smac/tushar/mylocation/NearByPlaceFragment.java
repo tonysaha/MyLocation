@@ -95,6 +95,9 @@ public class NearByPlaceFragment extends Fragment {
 
 
             view = inflater.inflate(R.layout.fragment_near_by_place, container, false);
+        SharedPreferences addPreferences=this.getActivity().getSharedPreferences("CurrentAddress",MODE_PRIVATE);
+        String address=addPreferences.getString("currentlocation","");
+
 
 
 
@@ -114,21 +117,6 @@ public class NearByPlaceFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //Spinner...........
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -427,16 +415,25 @@ public class NearByPlaceFragment extends Fragment {
 
     }
 
+    ProgressDialog progressDialog;
     public void loadRecycleView(final String type) {
 
-        listItems.clear();
-        final ProgressDialog progressDialog;
 
+
+
+
+
+
+        try {
+            listItems.clear();
+
+           // final ProgressDialog progressDialog;
         progressDialog=new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading.....");
         progressDialog.show();
 
         //Back Button Press Detect..........
+        }catch (Exception e){ }
 
 
 
@@ -451,8 +448,9 @@ public class NearByPlaceFragment extends Fragment {
             final String lat=preferences.getString("lat", "");
             final String lon=preferences.getString("lon","");
 
+
             String mailat=String.valueOf(mainActivity.getMyLat());
-            Log.d("loca",String.valueOf(mainActivity.getMyLat()));
+            Log.d("locatt",String.valueOf(lat));
 
             StringBuilder googlePlacesUrl =
                     new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");

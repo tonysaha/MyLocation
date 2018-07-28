@@ -136,19 +136,19 @@ public class MainActivity extends AppCompatActivity
             if (i==0){
                 TextOutsideCircleButton.Builder builder = new TextOutsideCircleButton.Builder()
                     .normalImageRes(R.drawable.near_menu2)
-                    .imagePadding(new Rect(0,0,0,0))
+                    .imagePadding(new Rect(10,10,10,10))
                     .normalText("Near By Place");
             bmb.addBuilder(builder);}
             if (i==1){
                 TextOutsideCircleButton.Builder builder = new TextOutsideCircleButton.Builder()
                         .normalImageRes(R.drawable.place_menu2)
-                        .imagePadding(new Rect(0,0,0,0))
+                        .imagePadding(new Rect(10,10,10,10))
                         .normalText("My Location Details");
                 bmb.addBuilder(builder);}
             if (i==2){
                 TextOutsideCircleButton.Builder builder = new TextOutsideCircleButton.Builder()
                         .normalImageRes(R.drawable.share_menu2)
-                       .imagePadding(new Rect(0,0,0,0))
+                       .imagePadding(new Rect(20,20,20,20))
                         .normalText("Share My Location");
                 bmb.addBuilder(builder);}
         }

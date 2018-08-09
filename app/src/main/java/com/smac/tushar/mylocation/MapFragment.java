@@ -61,6 +61,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         Log.d("Maps","ok");
         MainActivity activity= (MainActivity) getActivity();
         activity.updateFrag(false);
+        activity.searchBox(false);
         return view;
 
 

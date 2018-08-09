@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/mytoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary"
+        android:minHeight="50sp"
+        android:theme="@style/Base.TextAppearance.AppCompat.Headline" >
+        <BottomTab
+            android:layout_gravity="bottom"
+            app:layout_behavior="@string/bye_burger_bottom_behavior"
+            />
+        <FloatingActionButton
+            app:layout_behavior="@string/bye_burger_float_behavior"
+            />
+    </android.support.v7.widget.Toolbar>
+
+
+</LinearLayout>

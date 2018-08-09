@@ -68,7 +68,7 @@ public class NearByPlaceFragment extends Fragment {
 
     private View view;
     //Nearbyplace using Api...........
-    private  String GOOGLE_BROWSER_API_KEY="AIzaSyAowCbmyBSJtLUGn_FKoeGuVj4Sk_z5Rfw";
+    private String GOOGLE_BROWSER_API_KEY = "AIzaSyAowCbmyBSJtLUGn_FKoeGuVj4Sk_z5Rfw";
 
     private EditText rediusET;
     private TextView instruction;
@@ -91,15 +91,13 @@ public class NearByPlaceFragment extends Fragment {
         // Inflate the layout for this fragment
 
 
+        view = inflater.inflate(R.layout.fragment_near_by_place, container, false);
+        SharedPreferences addPreferences = this.getActivity().getSharedPreferences("CurrentAddress", MODE_PRIVATE);
+        String address = addPreferences.getString("currentlocation", "");
 
-
-
-            view = inflater.inflate(R.layout.fragment_near_by_place, container, false);
-        SharedPreferences addPreferences=this.getActivity().getSharedPreferences("CurrentAddress",MODE_PRIVATE);
-        String address=addPreferences.getString("currentlocation","");
-
-
-
+        MainActivity activity= (MainActivity) getActivity();
+        activity.updateFrag(true);
+        activity.searchBox(false);
 
         return view;
     }
@@ -119,16 +117,45 @@ public class NearByPlaceFragment extends Fragment {
         //Spinner...........
 
 
-
-        rq= Volley.newRequestQueue(getContext());
-        recyclerView=view.findViewById(R.id.recyclerV);
+        rq = Volley.newRequestQueue(getContext());
+        recyclerView = view.findViewById(R.id.recyclerV);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        listItems=new ArrayList<>();
-        rediusET=view.findViewById(R.id.rediusET);
-        instruction=view.findViewById(R.id.instruction);
+        listItems = new ArrayList<>();
+        rediusET = view.findViewById(R.id.rediusET);
+        instruction = view.findViewById(R.id.instruction);
+
+        MaterialSpinner  spinner = (MaterialSpinner) view.findViewById(R.id.spinner);
+        spinner.setItems("Select One","Airport","ATM","Bank","Bus Station","Cafe","Car Rental","Car Repair","Church",
+                "Doctor","Embassy","Gas Station","Gym","Hindu Temple","Hospital","Mosque","Movie Theater","Museum"
+                ,"Park","Police","Post Office","School","Stadium","Supermarket","Train Station","Travel Agency","Zoo");
+
+        if (listItems.isEmpty()) {
+            String click;
+            String redius = "1";
+            try {
+                SharedPreferences preferencesearch = getActivity().getSharedPreferences("HomeClick", MODE_PRIVATE);
+                click = preferencesearch.getString("type", "");
+
+                redius=preferencesearch.getString("redius","");
+                spinner.setText(click);
+            } catch (Exception e) {
+                click = "";
+            }
+
+            if(click!=""){
+                rediusET.setText(redius);
+                loadRecycleView(click);
+               // Toast.makeText(getContext(), "done click", Toast.LENGTH_SHORT).show();
+            }
+
+            SharedPreferences preferencesearch = getActivity().getSharedPreferences("HomeClick", MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferencesearch.edit();
+            editor.clear();
+            editor.commit();
 
 
+    }
 
 
         //Check Recycle view Set Fixed Data.............................................................
@@ -150,10 +177,7 @@ public class NearByPlaceFragment extends Fragment {
 
 
 
-        MaterialSpinner  spinner = (MaterialSpinner) view.findViewById(R.id.spinner);
-        spinner.setItems("Select One","Airport","ATM","Bank","Bus Station","Cafe","Car Rental","Car Repair","Church",
-                "Doctor","Embassy","Gas Station","Gym","Hindu Temple","Hospital","Mosque","Movie Theater","Museum"
-                ,"Park","Police","Post Office","School","Stadium","Supermarket","Train Station","Travel Agency","Zoo");
+
 
         spinner.setDropdownMaxHeight(600);
         spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
@@ -382,7 +406,10 @@ public class NearByPlaceFragment extends Fragment {
 
 
                 SharedPreferences preferences3 =  this.getActivity().getSharedPreferences("lengthET", MODE_PRIVATE);
-                rediusET.setText(preferences3.getString("length", ""));
+               // rediusET.setText(preferences3.getString("length", ""));
+
+                SharedPreferences preferencesearch =getActivity().getSharedPreferences("DistanceSeek",MODE_PRIVATE);
+               rediusET.setText(preferencesearch.getString("distance",""));
 
                 //MyAdapter adpt=new MyAdapter();
                 Log.d("back","??"+type);
@@ -406,7 +433,7 @@ public class NearByPlaceFragment extends Fragment {
             listItems.clear();
 
 
-            rediusET.setText("1");
+           // rediusET.setText("1");
 
             Log.d("back","Error not select");
         }
@@ -425,15 +452,17 @@ public class NearByPlaceFragment extends Fragment {
 
 
         try {
-            listItems.clear();
 
+            listItems.clear();
            // final ProgressDialog progressDialog;
         progressDialog=new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading.....");
         progressDialog.show();
 
         //Back Button Press Detect..........
-        }catch (Exception e){ }
+        }catch (Exception e){
+
+        }
 
 
 
@@ -449,8 +478,8 @@ public class NearByPlaceFragment extends Fragment {
             final String lon=preferences.getString("lon","");
 
 
-            String mailat=String.valueOf(mainActivity.getMyLat());
-            Log.d("locatt",String.valueOf(lat));
+           // String mailat=String.valueOf(mainActivity.getMyLat());
+           // Log.d("locatt",String.valueOf(lat));
 
             StringBuilder googlePlacesUrl =
                     new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");

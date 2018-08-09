@@ -27,6 +27,8 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -74,6 +76,7 @@ import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.ButtonEnum;
 import com.nightonke.boommenu.OnBoomListener;
 import com.nightonke.boommenu.Piece.PiecePlaceEnum;
+import com.smac.tushar.mylocation.HelperClass.BottomNavigationViewBehavior;
 
 import java.io.IOException;
 import java.util.List;
@@ -83,7 +86,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,ICommunicate, GoogleApiClient.OnConnectionFailedListener,GoogleApiClient.ConnectionCallbacks,LocationListener{
+        implements ICommunicate, GoogleApiClient.OnConnectionFailedListener,GoogleApiClient.ConnectionCallbacks,LocationListener{
 
     private final int RC_VIDEO_APP_PERM=124;
     private boolean exit=false;
@@ -96,6 +99,7 @@ public class MainActivity extends AppCompatActivity
 
     private FloatingActionButton fabbButton;
     private NearByPlaceFragment nearByPlaceFragment;
+    private HomeFragment homeFragment;
     private MapFragment mapFragment;
     private PlaceFragment placeFragment;
     private double myLat;
@@ -109,6 +113,7 @@ public class MainActivity extends AppCompatActivity
     CountDownTimer countDownTimer;
     private  boolean gpsready=false;
     private LinearLayout linearLayout;
+    BottomNavigationView mBottomNavigationView;
 
     @Override
     public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
@@ -126,7 +131,115 @@ public class MainActivity extends AppCompatActivity
         permission.checkAndRequestPermissions(this);
 
         nearByPlaceFragment= new NearByPlaceFragment();
+        homeFragment=new HomeFragment();
         mapFragment=new MapFragment();
+
+
+        mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
+
+        mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Toast.makeText(MainActivity.this,"ok",Toast.LENGTH_SHORT).show();
+                Fragment fragment=null;
+                int id = item.getItemId();
+                Toolbar toolbar=findViewById(R.id.toolbar);
+
+                if (id == R.id.bottom_nav_location) {
+
+                    if (mInterstitialAd.isLoaded()) {
+                        mInterstitialAd.show();
+                    }
+                    linearLayout.setVisibility(View.GONE);
+
+                    toolbar.setBackgroundColor(Color.parseColor("#4DC0B5"));
+                    FragmentManager fragmentManager=getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.screen_area,new PlaceFragment()).commit();
+
+                } else if (id == R.id.bottom_nav_home) {
+                    if (mInterstitialAd.isLoaded()) {
+                        mInterstitialAd.show();
+                    } else {
+
+                    }
+                    SharedPreferences preferences =  getSharedPreferences("NearbyData", MODE_PRIVATE);
+                    SharedPreferences.Editor prefsEditor = preferences.edit();
+
+                    String nearbyLat =String.valueOf(myLat);
+                    String nearbyLon=String.valueOf(myLon);
+
+                    prefsEditor.putString("lat",nearbyLat);
+                    prefsEditor.putString("lon",nearbyLon).commit();
+
+
+
+                    //Floating Button....................color change.........
+                    fabbButton.setBackgroundTintList(ColorStateList.valueOf(Color
+                            .parseColor("#3498db")));
+
+
+                    linearLayout.setVisibility(View.VISIBLE);
+                    // toolbar.setBackgroundColor(Color.parseColor("#3F51B5"));
+
+
+                    // autocompleteFragment.setText("");
+
+                    MyAdapter myAdapter=new MyAdapter();
+                    myAdapter.setHasStableIds(false);
+                    myAdapter.notifyDataSetChanged();
+
+
+                    FragmentManager fragmentManager=getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.screen_area,homeFragment).commit();
+                    Toast.makeText(MainActivity.this,"Set Your Current Location",Toast.LENGTH_LONG).show();
+
+
+
+                    // toolbar.setBackgroundColor(Color.parseColor("#3F51B5"));
+                } else if (id == R.id.bottom_nev_shear) {
+                    if (mInterstitialAd.isLoaded()) {
+                        mInterstitialAd.show();
+                    } else {
+
+                    }
+
+                    Intent intent=new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    //LatLng point=new LatLng(myLat,myLon);
+                    String uri = "http://maps.google.com/maps/search/?api=1&query=" + myLat + ","
+                            +myLon;
+
+                    Uri point=Uri.parse(uri);
+                    Log.d("sendl",point.toString());
+
+
+                    String sharebody=("SMAC TECHNOLOGY"+"\n"+point+"\nThanks for using \n http://smactechnology.net ");
+
+                    String shareSub=getString(R.string.app_name);
+
+                    intent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
+                    intent.putExtra(Intent.EXTRA_TEXT,sharebody);
+                    startActivity(Intent.createChooser(intent,"Share Using"));
+
+
+                    fragment=null;
+
+
+                }
+
+
+
+
+
+                return true;
+            }
+        });
+
+
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) mBottomNavigationView.getLayoutParams();
+        layoutParams.setBehavior(new BottomNavigationViewBehavior());
+
+
         final BoomMenuButton bmb = (BoomMenuButton) findViewById(R.id.bmb);
 
 
@@ -358,6 +471,7 @@ public class MainActivity extends AppCompatActivity
 
                     nearByPlaceFragment.loadRecycleView(searchtype);
                 }catch (Exception e){
+                    Log.d("error","reooooooo");
 
                 }
 
@@ -515,7 +629,7 @@ public class MainActivity extends AppCompatActivity
 
 
                     toolbar.setBackgroundColor(Color.parseColor("#4DC0B5"));
-                    fragment = new NearByPlaceFragment();
+                    fragment = new HomeFragment();
                     if (fragment != null) {
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction ft = fragmentManager.beginTransaction();
@@ -627,137 +741,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
 
- /*   @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here...
-        Fragment fragment=null;
-        int id = item.getItemId();
-        Toolbar toolbar=findViewById(R.id.toolbar);
-
-      if (id == R.id.nav_place) {
-
-          if (mInterstitialAd.isLoaded()) {
-              mInterstitialAd.show();
-          }
-            linearLayout.setVisibility(View.GONE);
-
-            toolbar.setBackgroundColor(Color.parseColor("#4DC0B5"));
-          FragmentManager fragmentManager=getSupportFragmentManager();
-          fragmentManager.beginTransaction().replace(R.id.screen_area,new PlaceFragment()).commit();
-
-        } else if (id == R.id.nav_nearbyplace) {
-          if (mInterstitialAd.isLoaded()) {
-              mInterstitialAd.show();
-          } else {
-
-          }
-            SharedPreferences preferences =  getSharedPreferences("NearbyData", MODE_PRIVATE);
-            SharedPreferences.Editor prefsEditor = preferences.edit();
-
-            String nearbyLat =String.valueOf(myLat);
-            String nearbyLon=String.valueOf(myLon);
-
-            prefsEditor.putString("lat",nearbyLat);
-            prefsEditor.putString("lon",nearbyLon).commit();
-
-
-
-            //Floating Button....................color change.........
-          fabbButton.setBackgroundTintList(ColorStateList.valueOf(Color
-                  .parseColor("#3498db")));
-
-
-            linearLayout.setVisibility(View.VISIBLE);
-           // toolbar.setBackgroundColor(Color.parseColor("#3F51B5"));
-
-
-         // autocompleteFragment.setText("");
-
-          MyAdapter myAdapter=new MyAdapter();
-          myAdapter.setHasStableIds(false);
-          myAdapter.notifyDataSetChanged();
-
-
-            FragmentManager fragmentManager=getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.screen_area,nearByPlaceFragment).commit();
-            Toast.makeText(MainActivity.this,"Set Your Current Location",Toast.LENGTH_LONG).show();
-
-
-
-           // toolbar.setBackgroundColor(Color.parseColor("#3F51B5"));
-        } else if (id == R.id.nav_send) {
-          if (mInterstitialAd.isLoaded()) {
-              mInterstitialAd.show();
-          } else {
-
-          }
-
-          Intent intent=new Intent(Intent.ACTION_SEND);
-          intent.setType("text/plain");
-          //LatLng point=new LatLng(myLat,myLon);
-          String uri = "http://maps.google.com/maps/search/?api=1&query=" + myLat + ","
-                  +myLon;
-
-          Uri point=Uri.parse(uri);
-          Log.d("sendl",point.toString());
-
-
-          String sharebody=("SMAC TECHNOLOGY"+"\n"+point+"\nThanks for using \n http://smactechnology.net ");
-
-                  String shareSub=getString(R.string.app_name);
-
-          intent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
-          intent.putExtra(Intent.EXTRA_TEXT,sharebody);
-          startActivity(Intent.createChooser(intent,"Share Using"));
-
-
-          fragment=null;
-
-
-        }
-
-
-//        if(fragment!=null){
-//            FragmentManager fragmentManager=getSupportFragmentManager();
-//            FragmentTransaction ft=fragmentManager.beginTransaction();
-//            ft.replace(R.id.screen_area,fragment);
-//            ft.commit();
-//
-//
-//        }
-//        else{
-//            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//            drawer.closeDrawer(GravityCompat.START);
-//            return true;
-//        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 
 
     protected synchronized void buildGoogleApiClient() {
@@ -909,7 +893,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
-                if(addCount<1){
+                if(addCount<2){
                 mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
                 }
@@ -928,5 +912,13 @@ public class MainActivity extends AppCompatActivity
             fabbButton.setVisibility(View.GONE);
         else
             fabbButton.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void searchBox(Boolean flag) {
+        if(flag==false)
+            linearLayout.setVisibility(View.GONE);
+        else
+            linearLayout.setVisibility(View.VISIBLE);
     }
 }

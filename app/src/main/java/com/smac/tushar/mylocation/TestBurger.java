@@ -1,0 +1,27 @@
+package com.smac.tushar.mylocation;
+
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+
+
+import com.wingsofts.byeburgernavigationview.ByeBurgerBehavior;
+
+public class TestBurger extends AppCompatActivity {
+Toolbar mToolbar;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.testburger);
+       // mToolbar=get;
+        getSupportActionBar().hide();
+        mToolbar=findViewById(R.id.mytoolbar);
+//        ActionBar ac=getSupportActionBar();
+//
+      ByeBurgerBehavior.from(mToolbar).hide();
+    }
+}

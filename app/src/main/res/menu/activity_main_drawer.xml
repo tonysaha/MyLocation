@@ -4,35 +4,39 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-       <!-- <item
+        <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Home" />-->
+            android:icon="@drawable/nev_home"
+            android:title="Home" />
         <item
-            android:id="@+id/nav_place"
-            android:icon="@drawable/ic_my_location"
-            android:title="My Place" />
+            android:id="@+id/nav_mylocation"
+            android:icon="@drawable/nev_location"
+            android:title="My Location" />
         <item
-            android:id="@+id/nav_nearbyplace"
-            android:icon="@drawable/ic_near_me"
-            android:title="Near Place" />
-      <!--  <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />-->
+            android:id="@+id/nav_favorite"
+            android:icon="@drawable/nev_fevorite"
+            android:title="Favorite" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/nev_settings"
+            android:title="Settings" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/nev_about"
+            android:title="About Us" />
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/nev_share"
+            android:title="Share App" />
+        <item
+            android:id="@+id/nav_rate"
+            android:icon="@drawable/nev_rate"
+            android:title="Rate Us" />
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@drawable/nev_exit"
+            android:title="Exit" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-           <!-- <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />-->
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send My Location" />
-        </menu>
-    </item>
 
 </menu>

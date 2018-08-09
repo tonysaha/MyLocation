@@ -54,6 +54,8 @@ public class PlaceFragment extends Fragment {
         // Inflate the layout for this fragment
         MainActivity activity= (MainActivity) getActivity();
         activity.updateFrag(false);
+
+        activity.searchBox(false);
         return inflater.inflate(R.layout.fragment_place, container, false);
 
 

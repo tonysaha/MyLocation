@@ -38,7 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Heading"
-            android:textSize="20dp"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="#000000"
 
 
             />
@@ -56,13 +58,7 @@
         android:stepSize="0.1"
         />
 
-        <TextView
-            android:layout_toEndOf="@+id/MyRating"
-            android:id="@+id/distanceTv"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_height="wrap_content"
-            android:text="Distance "/>
+
 
     </RelativeLayout>
         <TextView
@@ -71,6 +67,24 @@
             android:layout_height="wrap_content"
             android:text="Detail"/>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="left">
+
+        <ImageView
+            android:id="@+id/loc_ico"
+            android:layout_width="10dp"
+
+            android:layout_height="10dp" />
+    <TextView
+        android:layout_toEndOf="@+id/loc_ico"
+        android:id="@+id/distanceTv"
+        android:layout_width="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:layout_height="wrap_content"
+        android:text="Distance "/>
+    </RelativeLayout>
 
 </LinearLayout>
 

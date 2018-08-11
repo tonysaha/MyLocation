@@ -36,7 +36,7 @@
                 android:layout_marginRight="8dp"/>
 
 
-            <com.nightonke.boommenu.BoomMenuButton
+         <!--   <com.nightonke.boommenu.BoomMenuButton
                 android:id="@+id/bmb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                 app:bmb_piecePlaceEnum="piecePlace_dot_3_1"
                 app:bmb_buttonPlaceEnum="buttonPlace_sc_3_1"
                 app:bmb_normalColor="#16A085"
-                />
+                />-->
 
             />
         </RelativeLayout>

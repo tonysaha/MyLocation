@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Toast.makeText(MainActivity.this,"ok",Toast.LENGTH_SHORT).show();
+                
                 Fragment fragment=null;
                 int id = item.getItemId();
                 Toolbar toolbar=findViewById(R.id.toolbar);
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) mBottomNavigationView.getLayoutParams();
+        /*CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) mBottomNavigationView.getLayoutParams();
         layoutParams.setBehavior(new BottomNavigationViewBehavior());
 
 
@@ -374,7 +374,7 @@ public class MainActivity extends AppCompatActivity
             public void onBoomDidShow() {
 
             }
-        });
+        });*/
      /*   FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -717,7 +717,15 @@ public class MainActivity extends AppCompatActivity
                 ft.replace(R.id.screen_area, nearByPlaceFragment).commit();
 
 
-            } else if(fragment instanceof HomeFragment){
+            }
+            else if(fragment instanceof NearByPlaceFragment){
+                searchBox(true);
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction ft = manager.beginTransaction();
+                ft.replace(R.id.screen_area, homeFragment).commit();
+
+            }
+            else if(fragment instanceof HomeFragment){
 
 
                 if (exit) {

@@ -101,7 +101,18 @@ public class MapFragment extends Fragment {
         placeid = getArguments().getString("palce_id");
         placeDetails(placeid);
         String url = placeurl;
-        Toast.makeText(getContext(), placeurl, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getContext(), placeurl, Toast.LENGTH_SHORT).show();
+
+        String type=getArguments().getString("type");
+        SharedPreferences preferences =  getActivity().getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = preferences.edit();
+
+        String a =type;
+
+        prefsEditor.putString("ItemId",a).commit();
+
+
+
         //String url="https://maps.google.com/?cid="+placeid+"";
         // Log.d("placeid",url);
 

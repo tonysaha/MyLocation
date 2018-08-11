@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Distance: "
-                android:layout_marginLeft="5sp"/>
+                android:layout_marginLeft="10sp"/>
 
             <TextView
                 android:id="@+id/distance_id"
@@ -59,12 +59,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/atm_id"
@@ -76,6 +76,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Atm"
+                                android:textSize="10sp"
                                 android:textColor="#000000" />
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -84,12 +85,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/bank_id"
@@ -101,6 +102,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Bank"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -108,12 +110,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/texi_id"
@@ -125,6 +127,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Taxi"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -139,12 +142,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:layout_width="match_parent"
@@ -156,6 +159,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Bus Stand"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -164,12 +168,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/salon_id"
@@ -181,6 +185,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Salon"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -188,12 +193,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/hospital_id"
@@ -205,6 +210,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Hospital"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -219,12 +225,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/hotel_id"
@@ -236,6 +242,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Hotel"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -244,12 +251,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/restaurant_id"
@@ -261,6 +268,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Restaurant"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -268,12 +276,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/park_id"
@@ -285,6 +293,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Park"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -299,12 +308,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/zoo_id"
@@ -316,6 +325,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Zoo"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -324,12 +334,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/cinema_id"
@@ -341,6 +351,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Cinema"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -348,12 +359,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/shopping_id"
@@ -365,6 +376,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Shopping"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -379,12 +391,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/cafa_id"
@@ -396,6 +408,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Cafa"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -404,12 +417,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/grocery_id"
@@ -421,6 +434,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Grocery"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -428,12 +442,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/bar_id"
@@ -445,6 +459,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Bar"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -459,12 +474,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/bakery_id"
@@ -476,6 +491,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Bakery"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -484,12 +500,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/dentist_id"
@@ -501,6 +517,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Dentist"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -508,12 +525,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/doctor_id"
@@ -525,6 +542,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Doctor"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -539,12 +557,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/police_id"
@@ -556,6 +574,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Police"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -564,12 +583,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/university"
@@ -581,6 +600,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="University"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -588,12 +608,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/gas_id"
@@ -605,6 +625,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Gas"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -619,12 +640,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/temple_id"
@@ -636,6 +657,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Temple"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -644,12 +666,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/church"
@@ -661,6 +683,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Church"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -668,12 +691,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/mosque_id"
@@ -685,6 +708,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Mosque"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -699,12 +723,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/carwash_id"
@@ -716,6 +740,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Car Wash"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -724,12 +749,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/gym_id"
@@ -741,6 +766,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Gym"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
@@ -748,12 +774,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100sp"
                         android:layout_weight="1"
-                        app:cardCornerRadius="10sp"
                         android:layout_margin="5sp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:padding="20sp"
                             android:gravity="center">
                             <ImageView
                                 android:id="@+id/school_id"
@@ -765,6 +791,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="School"
+                                android:textSize="10sp"
                                 android:textColor="#000000"/>
                         </LinearLayout>
                     </android.support.v7.widget.CardView>

@@ -47,6 +47,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -114,6 +115,7 @@ public class MainActivity extends AppCompatActivity
     private  boolean gpsready=false;
     private LinearLayout linearLayout;
     BottomNavigationView mBottomNavigationView;
+    WebView webView;
 
     @Override
     public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
@@ -135,6 +137,7 @@ public class MainActivity extends AppCompatActivity
         mapFragment=new MapFragment();
 
 
+        webView=findViewById(R.id.webview);
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
 
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -682,38 +685,39 @@ public class MainActivity extends AppCompatActivity
         } else {
 
 
-
             //..Put arg for Back And data not clear...............Fragment check for back presss....................
 
 
             Fragment fragment = getVisibleFragment();
-            if (fragment instanceof  MapFragment){
-              //  Log.d("back",fragment.toString());
+            if (fragment instanceof MapFragment) {
+
+                //  Log.d("back",fragment.toString());
 
 
                 //Get Cash memory data
                 /*SharedPreferences preferences =  getSharedPreferences("AppPrefs", MODE_PRIVATE);
                 String type=preferences.getString("ItemId", "");*/
 
-               // Fragment fragment2=new NearByPlaceFragment();
+                // Fragment fragment2=new NearByPlaceFragment();
+
 
                 FragmentManager manager = getSupportFragmentManager();
                 //For pass data...if back press ...back status
 
 
                 Bundle args = new Bundle();
-                args.putString("back","back");
-               //args.putString("type",type);
+                args.putString("back", "back");
+                //args.putString("type",type);
 
 
                 nearByPlaceFragment.setArguments(args);
 
 
-                FragmentTransaction ft=manager.beginTransaction();
+                FragmentTransaction ft = manager.beginTransaction();
                 ft.replace(R.id.screen_area, nearByPlaceFragment).commit();
 
 
-            }else {
+            } else if(fragment instanceof HomeFragment){
 
 
                 if (exit) {
@@ -737,8 +741,9 @@ public class MainActivity extends AppCompatActivity
             }
 
 
-
         }
+
+
     }
 
 

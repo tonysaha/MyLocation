@@ -1,8 +1,10 @@
 package com.smac.tushar.mylocation;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -14,6 +16,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.GeolocationPermissions;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -40,7 +47,7 @@ import org.json.JSONObject;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class MapFragment extends Fragment implements OnMapReadyCallback {
+public class MapFragment extends Fragment {
 
 
     RequestQueue rq;
@@ -48,18 +55,20 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     GoogleMap googleMap;
     MapView mapView;
     Context context;
-    private  String GOOGLE_BROWSER_API_KEY="AIzaSyAowCbmyBSJtLUGn_FKoeGuVj4Sk_z5Rfw";
+    private String GOOGLE_BROWSER_API_KEY = "AIzaSyAowCbmyBSJtLUGn_FKoeGuVj4Sk_z5Rfw";
 
-
+    WebView webView;
+    private String placeurl;
+    private static final String TEL_PREFIX = "tel:";
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_map,container,false);
-        context=getActivity().getBaseContext();
-        Log.d("Maps","ok");
-        MainActivity activity= (MainActivity) getActivity();
+        view = inflater.inflate(R.layout.fragment_map, container, false);
+        context = getActivity().getBaseContext();
+        Log.d("Maps", "ok");
+        MainActivity activity = (MainActivity) getActivity();
         activity.updateFrag(false);
         activity.searchBox(false);
         return view;
@@ -70,28 +79,48 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onDetach() {
         super.onDetach();
-        MainActivity activity= (MainActivity) getActivity();
+        MainActivity activity = (MainActivity) getActivity();
         activity.updateFrag(true);
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        webView.loadUrl(urln);
+    }
+
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mapView=(MapView) view.findViewById(R.id.map2);
 
-        rq= Volley.newRequestQueue(getContext());
+        rq = Volley.newRequestQueue(getContext());
+        webView = view.findViewById(R.id.webview);
+        String placeid;
+        MainActivity mainActivity = (MainActivity) getActivity();
+        placeid = getArguments().getString("palce_id");
+        placeDetails(placeid);
+        String url = placeurl;
+        Toast.makeText(getContext(), placeurl, Toast.LENGTH_SHORT).show();
+        //String url="https://maps.google.com/?cid="+placeid+"";
+        // Log.d("placeid",url);
+
+
+        //..............................Map Route draw................................................................
+        // mapView=(MapView) view.findViewById(R.id.map2);
+     /*   rq= Volley.newRequestQueue(getContext());
         if(mapView!=null){
 
             mapView.onCreate(null);
             mapView.onResume();
             mapView.getMapAsync(this);
 
-        }
+        }*/
     }
 
 
 
-    @Override
+   /* @Override
     public void onMapReady(GoogleMap googleMap) {
 
         MainActivity mainActivity = (MainActivity) getActivity();
@@ -155,7 +184,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
 
 
-        buildUrl(googleMap,startLat,startLon,endLat,endtLon);
+       // buildUrl(googleMap,startLat,startLon,endLat,endtLon);
     }
 
 
@@ -240,11 +269,94 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     }
+*/
+String urln;
+    public void placeDetails(String id) {
+
+        MainActivity mainActivity = (MainActivity) getActivity();
+        try {
+            StringBuilder googlePlacesUrl =
+                    new StringBuilder("https://maps.googleapis.com/maps/api/place/details/json?");
+            googlePlacesUrl.append("placeid=").append(id);
 
 
+            googlePlacesUrl.append("&key=" + GOOGLE_BROWSER_API_KEY);
+
+            String url = googlePlacesUrl.toString();
+            Log.d("Placeurl", url);
 
 
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                    (Request.Method.GET, url, null, new com.android.volley.Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
 
 
+                            JSONObject neadby = null;
+                            try {
+                                neadby = response.getJSONObject("result");
+                                placeurl = neadby.getString("url");
+urln=placeurl;
 
+                                webView.setWebViewClient(new WebViewClient());
+                                webView.getSettings().setJavaScriptEnabled(true);
+                                webView.getSettings().setDomStorageEnabled(true);
+                                webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+                                webView.getSettings().getAllowContentAccess();
+                                webView.getSettings().getAllowFileAccess();
+                                webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+                                webView.setWebViewClient(new CustomWebViewClient());
+                                webView.getSettings().setGeolocationEnabled(true);
+                                webView.setWebChromeClient(new WebChromeClient(){
+
+                                    @Override
+                                    public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
+                                        callback.invoke(origin, true, false);
+                                    }
+                                });
+                                webView.loadUrl(placeurl);
+                                Log.d("points", placeurl.toString());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                            //  Log.d("Location",list.getString("name"));
+
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                            Log.d("points", "error");
+                        }
+                    });
+            rq.add(jsonObjectRequest);
+        } catch (Exception e) {
+            Log.d("points", e.toString());
+
+
+        }
+
+
+    }
+
+    private class CustomWebViewClient extends WebViewClient {
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView wv, String url) {
+            if (url.startsWith(TEL_PREFIX)) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+                return true;
+            }
+            return false;
+        }
+
+
+    }
 }
+
+

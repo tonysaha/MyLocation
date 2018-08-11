@@ -8,15 +8,25 @@ public class NearByPlaceModel {
     private String lan;
     private String type;
     private String distance;
+    private String placeId;
 
 
-    public NearByPlaceModel(String name, String address, String lat, String lan,String type,String distance) {
+    public NearByPlaceModel(String name, String address, String lat, String lan,String type,String distance,String place_id) {
         this.name = name;
         this.address = address;
         this.lat = lat;
         this.lan = lan;
         this.type=type;
         this.distance=distance;
+        this.placeId=place_id;
+    }
+
+    public String getPlaceId() {
+        return placeId;
+    }
+
+    public void setPlaceId(String placeId) {
+        this.placeId = placeId;
     }
 
     public String getDistance() {

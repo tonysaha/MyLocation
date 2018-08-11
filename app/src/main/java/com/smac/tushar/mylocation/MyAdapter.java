@@ -77,6 +77,8 @@ private String mapNme;
                    args.putString("name", listitem.getName());
                    args.putString("address", listitem.getAddress());
                    args.putString("type",mapType);
+                   args.putString("palce_id",listitem.getPlaceId());
+
                    fragment.setArguments(args);
 
 

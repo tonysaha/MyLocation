@@ -10,9 +10,10 @@ public class NearByPlaceModel {
     private String distance;
     private String placeId;
     private String imageUrl;
+    private String rating;
 
 
-    public NearByPlaceModel(String name, String address, String lat, String lan,String type,String distance,String place_id,String imageUrl) {
+    public NearByPlaceModel(String name, String address, String lat, String lan,String type,String distance,String place_id,String imageUrl,String rating) {
         this.name = name;
         this.address = address;
         this.lat = lat;
@@ -21,6 +22,15 @@ public class NearByPlaceModel {
         this.distance=distance;
         this.placeId=place_id;
         this.imageUrl=imageUrl;
+        this.rating=rating;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
     public String getImageUrl() {

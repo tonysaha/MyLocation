@@ -13,10 +13,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -49,6 +52,11 @@ private String mapNme;
         holder.headerTv.setText(listitem.getName());
         holder.detailTv.setText(listitem.getAddress());
         holder.distaceTv.setText("Distance : "+listitem.getDistance()+" km");
+        holder.ratingBar.setRating(Float.valueOf(listitem.getRating()));
+        holder.ratingTv.setText(listitem.getRating());
+        Glide.with(context)
+                .load(listitem.getImageUrl())
+                .into(holder.iconEv);
 
 
         holder.recView.setOnClickListener(new View.OnClickListener() {
@@ -116,8 +124,10 @@ private String mapNme;
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView headerTv,detailTv,distaceTv;
+        public TextView headerTv,detailTv,distaceTv,ratingTv;
         private LinearLayout recView;
+        private ImageView iconEv;
+        private RatingBar ratingBar;
 
 
         public ViewHolder(View itemView) {
@@ -125,7 +135,10 @@ private String mapNme;
             headerTv=(TextView) itemView.findViewById(R.id.headTv);
             detailTv=(TextView) itemView.findViewById(R.id.detailTv);
             distaceTv=itemView.findViewById(R.id.distanceTv);
+            iconEv=itemView.findViewById(R.id.icon);
             recView=(LinearLayout) itemView.findViewById(R.id.recView);
+            ratingBar=itemView.findViewById(R.id.MyRating);
+            ratingTv=itemView.findViewById(R.id.ratingTv);
 
         }
     }

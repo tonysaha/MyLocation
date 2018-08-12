@@ -512,7 +512,7 @@ public class NearByPlaceFragment extends Fragment {
                                     String distance=getDistanceKm(Float.valueOf(lat),Float.valueOf(lon),Float.valueOf(location2.getString("lat")),Float.valueOf(location2.getString("lng")));
                                     Log.d("LocationD",String.valueOf(distance));
 
-                                    NearByPlaceModel listitem=new NearByPlaceModel(list.getString("name"),list.getString("vicinity"),location2.getString("lat"),location2.getString("lng"),type, distance,list.getString("place_id"),list.getString("icon"));
+                                    NearByPlaceModel listitem=new NearByPlaceModel(list.getString("name"),list.getString("vicinity"),location2.getString("lat"),location2.getString("lng"),type, distance,list.getString("place_id"),list.getString("icon"),list.getString("rating"));
                                     listItems.add(listitem);
 
                                   //  Log.d("Location",list.getString("name"));
